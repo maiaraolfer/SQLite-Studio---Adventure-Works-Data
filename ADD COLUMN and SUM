@@ -1,4 +1,4 @@
--- criando uma coluna FullName combining First and Last name.
+-- creating a column FullName by combining First and Last name:
 -- First, add a new column 'FullName'
 ALTER TABLE SalesWithCustomerInfo
 ADD COLUMN FullName TEXT;
