@@ -22,12 +22,10 @@ SELECT *
 FROM SalesWithCustomerInfo
 WHERE OrderDate = '2020-01-01'; --datas devem ser escritas entre aspas
 
--- consultando total de vendas por mes.
+-- consulting the TotalSales by month.
 SELECT 
-  strftime('%Y-%m', OrderDate) AS YearMonth, -- extrai o ano e mes
-  SUM(OrderQuantity) AS TotalSales --soma das vendas as TotalSale
+  strftime('%Y-%m', OrderDate) AS YearMonth, -- extract the year and month from OrderDate column
+  SUM(OrderQuantity) AS TotalSales -- sum of OrderQuantity as TotalSales
 FROM SalesData_All
 GROUP BY YearMonth -- group by Year-Month
 ORDER BY YearMonth; -- order by Year-Month
-
---
