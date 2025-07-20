@@ -1,4 +1,6 @@
-CREATE TABLE SalesData2020_Copy (
+-- creating a new table called SalesData2020_copy
+
+CREATE TABLE SalesData2020_copy (
     OrderDate TEXT,
     StockDate TEXT,
     OrderNumber INTEGER,
@@ -7,17 +9,17 @@ CREATE TABLE SalesData2020_Copy (
     TerritoryKey INTEGER,
     OrderLineItem INTEGER,
     OrderQuantity INTEGER
-); -- creating a new table 
-
-INSERT INTO SalesData2020_Copy (
+);
+-- inserting the data from SalesData2020 into SalesData2020_copy
+INSERT INTO SalesData2020_copy (
     OrderDate, StockDate, OrderNumber, ProductKey, 
     CustomerKey, TerritoryKey, OrderLineItem, OrderQuantity
 )
 SELECT
     column1, column2, column3, column4,
     column5, column6, column7, column8
-FROM SalesData2020; -- getting data from original table
+FROM SalesData2020;
 
-SELECT * FROM SalesData2020_copy LIMIT 10; -- checking
+SELECT * FROM SalesData2020_copy LIMIT 10; -- checking if the data was copied
 
-DELETE FROM SalesData2020_copy WHERE rowid = 1; -- deleting first row (rowid = 1)
+DELETE FROM SalesData2020_copy WHERE rowid = 1; -- deleting first row (rowid = 1) -- deleting first row
