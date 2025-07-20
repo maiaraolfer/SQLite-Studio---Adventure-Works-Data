@@ -1,0 +1,23 @@
+CREATE TABLE SalesData2020_Copy (
+    OrderDate TEXT,
+    StockDate TEXT,
+    OrderNumber INTEGER,
+    ProductKey INTEGER,
+    CustomerKey INTEGER,
+    TerritoryKey INTEGER,
+    OrderLineItem INTEGER,
+    OrderQuantity INTEGER
+); -- creating a new table 
+
+INSERT INTO SalesData2020_Copy (
+    OrderDate, StockDate, OrderNumber, ProductKey, 
+    CustomerKey, TerritoryKey, OrderLineItem, OrderQuantity
+)
+SELECT
+    column1, column2, column3, column4,
+    column5, column6, column7, column8
+FROM SalesData2020; -- getting data from original table
+
+SELECT * FROM SalesData2020_copy LIMIT 10; -- checking
+
+DELETE FROM SalesData2020_copy WHERE rowid = 1; -- deleting first row (rowid = 1)

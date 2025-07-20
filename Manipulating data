@@ -1,0 +1,33 @@
+-- Data manipulation
+-- using LEFT JOIN to bind Sales data with Customer information into a new table
+CREATE TABLE SalesWithCustomerInfo AS
+SELECT *
+FROM SalesData_All
+LEFT JOIN CustomerLookup_copy
+    ON SalesData_All.CustomerKey=CustomerLookup_copy.CustomerKey;
+
+-- using some commands to get information from customer John Thomas
+SELECT *
+FROM SalesWithCustomerInfo
+WHERE FirstName COLLATE NOCASE = "john" AND LastName COLLATE NOCASE = "thomas";
+-- COLLATE NOCASE tells SQL to ignora case when comparing strings.
+
+-- But it is also possible to put everything in lower case:
+SELECT *
+FROM SalesWithCustomerInfo
+WHERE LOWER(FirstName)  = "john" AND LOWER(LastName) = "thomas";
+
+--
+SELECT *
+FROM SalesWithCustomerInfo
+WHERE OrderDate = '2020-01-01'; --datas devem ser escritas entre aspas
+
+-- consultando total de vendas por mes.
+SELECT 
+  strftime('%Y-%m', OrderDate) AS YearMonth, -- extrai o ano e mes
+  SUM(OrderQuantity) AS TotalSales --soma das vendas as TotalSale
+FROM SalesData_All
+GROUP BY YearMonth -- group by Year-Month
+ORDER BY YearMonth; -- order by Year-Month
+
+--
