@@ -1,0 +1,20 @@
+-- criando uma coluna FullName combining First and Last name.
+-- First, add a new column 'FullName'
+ALTER TABLE SalesWithCustomerInfo
+ADD COLUMN FullName TEXT;
+
+--then update the table with the FullName information combining FirstName with LastName
+UPDATE SalesWithCustomerInfo
+SET FullName = FirstName || ' ' || LastName;
+
+-- Now you can get the sales data and group by FullName
+SELECT FullName, SUM(OrderDate) AS TotalSalesAmount
+FROM SalesWithCustomerInfo
+GROUP BY FullName;
+
+-- you can also display TotalSalesAmount in Currency if you want
+SELECT 
+  FullName,
+  '$' || printf('%.2f', SUM(OrderDate)) AS TotalSalesAmount
+FROM SalesWithCustomerInfo
+GROUP BY FullName;
